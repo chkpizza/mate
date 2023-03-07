@@ -8,7 +8,9 @@ object Google {
     const val MATERIAL = "com.google.android.material:material:1.8.0"
 }
 
-object Test {
+object Firebase {
+    const val FIREBASE_BOM = "com.google.firebase:firebase-bom:31.2.3"
+    const val FIREBASE_ANALYTICS = "com.google.firebase:firebase-analytics-ktx"
 }
 
 object AndroidTest {
