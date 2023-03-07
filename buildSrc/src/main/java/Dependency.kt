@@ -6,11 +6,13 @@ object AndroidX {
 
 object Google {
     const val MATERIAL = "com.google.android.material:material:1.8.0"
+    const val GOOGLE_PLAY_SERVICE = "com.google.android.gms:play-services-auth:20.4.1"
 }
 
 object Firebase {
     const val FIREBASE_BOM = "com.google.firebase:firebase-bom:31.2.3"
     const val FIREBASE_ANALYTICS = "com.google.firebase:firebase-analytics-ktx"
+    const val FIREBASE_AUTH = "com.google.firebase:firebase-auth-ktx"
 }
 
 object AndroidTest {

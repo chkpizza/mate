@@ -1,7 +1,8 @@
-package com.antique.mate
+package com.antique.mate.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.antique.mate.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
