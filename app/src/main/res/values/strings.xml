@@ -2,4 +2,9 @@
     <string name="app_name">mate</string>
     <string name="google_sign_in_text">Google로 로그인</string>
     <string name="authentication_error_text">사용자 인증에 실패했습니다</string>
+    <string name="home_menu_title_text">홈</string>
+    <string name="post_menu_title_text">등록</string>
+    <string name="study_group_menu_title_text">스터디모집</string>
+    <string name="memorize_menu_title_text">암기</string>
+    <string name="profile_menu_title_text">내프로필</string>
 </resources>
