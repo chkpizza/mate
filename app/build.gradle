@@ -47,11 +47,19 @@ dependencies {
     testImplementation(AndroidTest.JUNIT4)
     androidTestImplementation(AndroidTest.EXT_JUNIT)
     androidTestImplementation(AndroidTest.ESPRESSO_CORE)
-    
+
+    //Firebase
     implementation platform(Firebase.FIREBASE_BOM)
     implementation(Firebase.FIREBASE_ANALYTICS)
     implementation(Firebase.FIREBASE_AUTH)
     implementation(Google.GOOGLE_PLAY_SERVICE)
     implementation(Firebase.FIREBASE_REALTIME_DATABASE)
     implementation(Firebase.FIREBASE_STORAGE)
+
+    //lifecycle
+    implementation(AndroidX.VIEW_MODEL)
+    implementation(AndroidX.LIVE_DATA)
+
+    //coroutines
+    implementation(Kotlin.COROUTINES)
 }
