@@ -9,8 +9,11 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.WindowCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.antique.mate.R
 import com.antique.mate.databinding.ActivityAuthBinding
+import com.antique.mate.viewmodel.AuthViewModel
+import com.antique.mate.viewmodel.AuthViewModelFactory
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -22,6 +25,9 @@ import com.google.firebase.ktx.Firebase
 
 class AuthActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAuthBinding
+
+    private val authViewModel by lazy { ViewModelProvider(this, AuthViewModelFactory()).get(AuthViewModel::class.java) }
+
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var signInIntentLauncher: ActivityResultLauncher<Intent>
 
@@ -88,35 +94,21 @@ class AuthActivity : AppCompatActivity() {
         Firebase.auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    /*
-                    val date = System.currentTimeMillis().toString()
-                    val nickName = "수험생_${date.substring(date.length - 4)}"
-                    //authViewModel.registration(User(uid = Helper.getUid(), nickName = nickName, date = date))
-
-                     */
-                    startActivity(Intent(this, MainActivity::class.java))
+                    authViewModel.registerUser()
                 } else {
-
+                    Snackbar.make(binding.root, getString(R.string.authentication_error_text), Snackbar.LENGTH_LONG).show()
                 }
             }
     }
 
 
     private fun setupObservers() {
-        /*
-        authViewModel.image.observe(this) {
-            Glide.with(binding.onBoardingImageView.context)
-                .load(it)
-                .into(binding.onBoardingImageView)
+        authViewModel.registerState.observe(this) {
+            when(it) {
+                true -> startActivity(Intent(this, MainActivity::class.java))
+                false -> Snackbar.make(binding.root, getString(R.string.authentication_error_text), Snackbar.LENGTH_LONG).show()
+            }
         }
-
-        authViewModel.registration.observe(this) {
-            Helper.isSignOut.value = false
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-        }
-
-         */
     }
 
 

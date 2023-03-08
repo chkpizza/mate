@@ -2,11 +2,17 @@ object AndroidX {
     const val CORE = "androidx.core:core-ktx:1.7.0"
     const val APP_COMPAT = "androidx.appcompat:appcompat:1.6.1"
     const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:2.1.4"
+    const val VIEW_MODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+    const val LIVE_DATA = "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
 }
 
 object Google {
     const val MATERIAL = "com.google.android.material:material:1.8.0"
     const val GOOGLE_PLAY_SERVICE = "com.google.android.gms:play-services-auth:20.4.1"
+}
+
+object Kotlin {
+    const val COROUTINES = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
 }
 
 object Firebase {
