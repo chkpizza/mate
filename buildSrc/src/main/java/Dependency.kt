@@ -13,6 +13,8 @@ object Firebase {
     const val FIREBASE_BOM = "com.google.firebase:firebase-bom:31.2.3"
     const val FIREBASE_ANALYTICS = "com.google.firebase:firebase-analytics-ktx"
     const val FIREBASE_AUTH = "com.google.firebase:firebase-auth-ktx"
+    const val FIREBASE_REALTIME_DATABASE = "com.google.firebase:firebase-database-ktx"
+    const val FIREBASE_STORAGE = "com.google.firebase:firebase-storage-ktx"
 }
 
 object AndroidTest {

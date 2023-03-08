@@ -52,4 +52,6 @@ dependencies {
     implementation(Firebase.FIREBASE_ANALYTICS)
     implementation(Firebase.FIREBASE_AUTH)
     implementation(Google.GOOGLE_PLAY_SERVICE)
+    implementation(Firebase.FIREBASE_REALTIME_DATABASE)
+    implementation(Firebase.FIREBASE_STORAGE)
 }
