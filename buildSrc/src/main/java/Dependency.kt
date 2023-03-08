@@ -4,6 +4,9 @@ object AndroidX {
     const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:2.1.4"
     const val VIEW_MODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
     const val LIVE_DATA = "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
+    const val NAVIGATION_RUNTIME = "androidx.navigation:navigation-runtime-ktx:2.6.0-alpha06"
+    const val NAVIGATION_FRAGMENT = "androidx.navigation:navigation-fragment-ktx:2.6.0-alpha06"
+    const val NAVIGATION_UI = "androidx.navigation:navigation-ui-ktx:2.6.0-alpha06"
 }
 
 object Google {
@@ -27,4 +30,9 @@ object AndroidTest {
     const val JUNIT4: String = "junit:junit:4.13.2"
     const val EXT_JUNIT = "androidx.test.ext:junit:1.1.5"
     const val ESPRESSO_CORE = "androidx.test.espresso:espresso-core:3.5.1"
+}
+
+object ThirdParty {
+    const val GLIDE = "com.github.bumptech.glide:glide:4.14.2"
+    const val GLIDE_COMPILER = "com.github.bumptech.glide:compiler:4.14.2"
 }
