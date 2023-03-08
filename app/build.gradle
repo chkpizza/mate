@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.gms.google-services'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -37,13 +39,12 @@ android {
 }
 
 dependencies {
+    implementation project(":features:post")
+
     implementation(AndroidX.CORE)
     implementation(AndroidX.APP_COMPAT)
     implementation(Google.MATERIAL)
     implementation(AndroidX.CONSTRAINT_LAYOUT)
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation(AndroidTest.JUNIT4)
     androidTestImplementation(AndroidTest.EXT_JUNIT)
     androidTestImplementation(AndroidTest.ESPRESSO_CORE)
@@ -62,4 +63,9 @@ dependencies {
 
     //coroutines
     implementation(Kotlin.COROUTINES)
+
+    //navigation
+    implementation(AndroidX.NAVIGATION_RUNTIME)
+    implementation(AndroidX.NAVIGATION_FRAGMENT)
+    implementation(AndroidX.NAVIGATION_UI)
 }
