@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.antique.post.ApiStatus
+import com.antique.common.ApiStatus
 import com.antique.post.SingleEvent
 import com.antique.post.usecase.GetCategoriesUseCase
 import com.antique.post.usecase.RegisterPostUseCase
