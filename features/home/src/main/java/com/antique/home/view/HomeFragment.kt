@@ -1,6 +1,7 @@
 package com.antique.home.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,17 +9,21 @@ import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.core.view.updatePadding
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.GridLayoutManager
 import com.antique.home.R
 import com.antique.home.adapter.PostCategoryListAdapter
 import com.antique.home.adapter.PostCategoryWrapperAdapter
 import com.antique.home.databinding.FragmentHomeBinding
+import com.antique.home.viewmodel.HomeViewModel
+import com.antique.home.viewmodel.HomeViewModelFactory
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
+    private val homeViewModel by navGraphViewModels<HomeViewModel>(R.id.home_nav_graph) { HomeViewModelFactory() }
     private lateinit var postCategoryListAdapter: PostCategoryListAdapter
     private lateinit var postCategoryWrapperAdapter: PostCategoryWrapperAdapter
     private lateinit var concatAdapter: ConcatAdapter
@@ -40,6 +45,7 @@ class HomeFragment : Fragment() {
         setupInsets()
         setupRecyclerView()
         setupViewState()
+        setupObservers()
     }
 
     private fun setupInsets() {
@@ -53,7 +59,7 @@ class HomeFragment : Fragment() {
 
     private fun setupRecyclerView() {
         postCategoryListAdapter = PostCategoryListAdapter {
-
+            homeViewModel.updateCategory(it)
         }
         postCategoryWrapperAdapter = PostCategoryWrapperAdapter(postCategoryListAdapter)
 
@@ -77,8 +83,14 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupViewState() {
-        val categories = mutableListOf<String>("일상", "공부질문", "넋두리", "수험생활")
+        val categories = mutableListOf("일상", "공부질문", "넋두리", "수험생활")
         postCategoryListAdapter.submitList(categories)
+    }
+
+    private fun setupObservers() {
+        homeViewModel.category.observe(viewLifecycleOwner) {
+            postCategoryListAdapter.updateCategory(it)
+        }
     }
 
     override fun onDestroyView() {
