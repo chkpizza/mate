@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when(destination.id) {
                 com.antique.post.R.id.postFragment -> binding.bottomNavigationView.visibility = View.VISIBLE
-
+                com.antique.home.R.id.homeFragment -> binding.bottomNavigationView.visibility = View.VISIBLE
                 else -> binding.bottomNavigationView.visibility = View.GONE
             }
         }

@@ -1,23 +1,20 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'com.google.gms.google-services'
     id 'androidx.navigation.safeargs.kotlin'
     id 'kotlin-kapt'
 }
 
 android {
-    namespace 'com.antique.mate'
+    namespace 'com.antique.home'
     compileSdk Version.compileSdk
 
     defaultConfig {
-        applicationId "com.antique.mate"
         minSdk Version.minSdk
         targetSdk Version.targetSdk
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -39,24 +36,18 @@ android {
 }
 
 dependencies {
-    implementation project(":features:home")
-    implementation project(":features:post")
 
     implementation(AndroidX.CORE)
     implementation(AndroidX.APP_COMPAT)
     implementation(Google.MATERIAL)
-    implementation(AndroidX.CONSTRAINT_LAYOUT)
     testImplementation(AndroidTest.JUNIT4)
     androidTestImplementation(AndroidTest.EXT_JUNIT)
     androidTestImplementation(AndroidTest.ESPRESSO_CORE)
 
-    //Firebase
-    implementation platform(Firebase.FIREBASE_BOM)
-    implementation(Firebase.FIREBASE_ANALYTICS)
-    implementation(Firebase.FIREBASE_AUTH)
-    implementation(Google.GOOGLE_PLAY_SERVICE)
-    implementation(Firebase.FIREBASE_REALTIME_DATABASE)
-    implementation(Firebase.FIREBASE_STORAGE)
+    //navigation
+    implementation(AndroidX.NAVIGATION_RUNTIME)
+    implementation(AndroidX.NAVIGATION_FRAGMENT)
+    implementation(AndroidX.NAVIGATION_UI)
 
     //lifecycle
     implementation(AndroidX.VIEW_MODEL)
@@ -65,8 +56,20 @@ dependencies {
     //coroutines
     implementation(Kotlin.COROUTINES)
 
-    //navigation
-    implementation(AndroidX.NAVIGATION_RUNTIME)
-    implementation(AndroidX.NAVIGATION_FRAGMENT)
-    implementation(AndroidX.NAVIGATION_UI)
+    //firebase
+    implementation platform(Firebase.FIREBASE_BOM)
+    implementation(Firebase.FIREBASE_AUTH)
+    implementation(Google.GOOGLE_PLAY_SERVICE)
+    implementation(Firebase.FIREBASE_REALTIME_DATABASE)
+    implementation(Firebase.FIREBASE_STORAGE)
+
+    //glide
+    implementation(ThirdParty.GLIDE)
+    kapt(ThirdParty.GLIDE_COMPILER)
+
+    //swipe refresh layout
+    implementation(AndroidX.SWIPE_REFRESH_LAYOUT)
+
+    //recycler view
+    implementation(AndroidX.RECYCLER_VIEW)
 }
