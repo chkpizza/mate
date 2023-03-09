@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.core.view.ViewCompat
 import androidx.core.view.updatePadding
 import androidx.databinding.DataBindingUtil
@@ -27,6 +28,8 @@ import com.google.android.material.snackbar.Snackbar
 class PostFragment : Fragment() {
     private var _binding: FragmentPostBinding? = null
     private val binding get() = _binding!!
+    private var softInputMode: Int? = null
+
     private val postViewModel by navGraphViewModels<PostViewModel>(R.id.post_nav_graph) { PostViewModelFactory() }
     private lateinit var registerPostMenuItem: MenuItem
     private lateinit var selectedImageListAdapter: SelectedImageListAdapter
@@ -36,6 +39,9 @@ class PostFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_post, container, false)
+
+        softInputMode = requireActivity().window?.attributes?.softInputMode
+        requireActivity().window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
 
         binding.lifecycleOwner = this
         binding.viewModel = postViewModel
@@ -145,6 +151,7 @@ class PostFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        softInputMode?.let { requireActivity().window?.setSoftInputMode(it) }
         _binding = null
     }
 }
