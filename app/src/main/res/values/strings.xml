@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">mate</string>
     <string name="google_sign_in_text">Google로 로그인</string>
     <string name="authentication_error_text">사용자 인증에 실패했습니다</string>
