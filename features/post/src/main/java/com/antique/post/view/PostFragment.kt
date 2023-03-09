@@ -3,6 +3,7 @@ package com.antique.post.view
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -27,7 +28,6 @@ import com.google.android.material.snackbar.Snackbar
 class PostFragment : Fragment() {
     private var _binding: FragmentPostBinding? = null
     private val binding get() = _binding!!
-    private var softInputMode: Int? = null
 
     private val postViewModel by navGraphViewModels<PostViewModel>(R.id.post_nav_graph) { PostViewModelFactory() }
     private lateinit var registerPostMenuItem: MenuItem
@@ -38,9 +38,6 @@ class PostFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_post, container, false)
-
-        softInputMode = requireActivity().window?.attributes?.softInputMode
-        requireActivity().window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
 
         binding.lifecycleOwner = this
         binding.viewModel = postViewModel
@@ -134,7 +131,8 @@ class PostFragment : Fragment() {
                 is ApiStatus.Success -> {
                     binding.postProgressView.visibility = View.GONE
                     binding.postDetailInputView.text.clear()
-                    postViewModel.clear()
+                    postViewModel.bindImages(emptyList())
+                    postViewModel.bindCategory("카테고리를 선택해주세요")
                     Snackbar.make(binding.root, getString(R.string.register_post_success_text), Snackbar.LENGTH_SHORT).show()
                 }
                 is ApiStatus.Error -> {
@@ -150,7 +148,6 @@ class PostFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        softInputMode?.let { requireActivity().window?.setSoftInputMode(it) }
         _binding = null
     }
 }

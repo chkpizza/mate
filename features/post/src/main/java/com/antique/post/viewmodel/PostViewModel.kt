@@ -27,9 +27,6 @@ class PostViewModel(
     private val _selectedImages = MutableLiveData<List<String>>()
     val selectedImages: LiveData<List<String>> get() = _selectedImages
 
-    //private val _registerState = MutableLiveData<ApiStatus<Boolean>>()
-    //val registerState: LiveData<ApiStatus<Boolean>> get() = _registerState
-
     private val _registerState = MutableLiveData<SingleEvent<ApiStatus<Boolean>>>()
     val registerState: LiveData<SingleEvent<ApiStatus<Boolean>>> get() = _registerState
 

@@ -4,9 +4,9 @@ object AndroidX {
     const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:2.1.4"
     const val VIEW_MODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
     const val LIVE_DATA = "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
-    const val NAVIGATION_RUNTIME = "androidx.navigation:navigation-runtime-ktx:2.6.0-alpha06"
-    const val NAVIGATION_FRAGMENT = "androidx.navigation:navigation-fragment-ktx:2.6.0-alpha06"
-    const val NAVIGATION_UI = "androidx.navigation:navigation-ui-ktx:2.6.0-alpha06"
+    const val NAVIGATION_RUNTIME = "androidx.navigation:navigation-runtime-ktx:2.5.3"
+    const val NAVIGATION_FRAGMENT = "androidx.navigation:navigation-fragment-ktx:2.5.3"
+    const val NAVIGATION_UI = "androidx.navigation:navigation-ui-ktx:2.5.3"
     const val SWIPE_REFRESH_LAYOUT = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     const val RECYCLER_VIEW = "androidx.recyclerview:recyclerview:1.3.0"
 }
