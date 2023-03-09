@@ -39,6 +39,7 @@ android {
 }
 
 dependencies {
+    implementation project(":features:home")
     implementation project(":features:post")
 
     implementation(AndroidX.CORE)

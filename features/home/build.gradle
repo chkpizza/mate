@@ -66,4 +66,10 @@ dependencies {
     //glide
     implementation(ThirdParty.GLIDE)
     kapt(ThirdParty.GLIDE_COMPILER)
+
+    //swipe refresh layout
+    implementation(AndroidX.SWIPE_REFRESH_LAYOUT)
+
+    //recycler view
+    implementation(AndroidX.RECYCLER_VIEW)
 }
