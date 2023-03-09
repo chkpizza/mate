@@ -7,5 +7,20 @@
     <fragment
         android:id="@+id/postFragment"
         android:name="com.antique.post.view.PostFragment"
-        android:label="PostFragment" />
+        android:label="PostFragment" >
+        <action
+            android:id="@+id/action_postFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+        <action
+            android:id="@+id/action_postFragment_to_galleryFragment"
+            app:destination="@id/galleryFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/categoryFragment"
+        android:name="com.antique.post.view.CategoryFragment"
+        android:label="CategoryFragment" />
+    <fragment
+        android:id="@+id/galleryFragment"
+        android:name="com.antique.post.view.GalleryFragment"
+        android:label="GalleryFragment" />
 </navigation>
