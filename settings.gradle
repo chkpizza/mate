@@ -16,3 +16,4 @@ rootProject.name = "mate"
 include ':app'
 include ':features:post'
 include ':features:home'
+include ':features:common'
