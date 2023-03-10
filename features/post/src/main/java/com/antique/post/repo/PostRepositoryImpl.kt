@@ -1,7 +1,7 @@
 package com.antique.post.repo
 
 import androidx.core.net.toUri
-import com.antique.post.data.Post
+import com.antique.common.Post
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database

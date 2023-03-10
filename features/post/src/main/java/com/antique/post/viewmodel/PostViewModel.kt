@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.antique.common.ApiStatus
-import com.antique.post.SingleEvent
+import com.antique.common.SingleEvent
 import com.antique.post.usecase.GetCategoriesUseCase
 import com.antique.post.usecase.RegisterPostUseCase
 import kotlinx.coroutines.launch
