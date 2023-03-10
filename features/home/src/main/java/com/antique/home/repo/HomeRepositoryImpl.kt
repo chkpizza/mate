@@ -1,8 +1,8 @@
 package com.antique.home.repo
 
+import com.antique.common.Block
 import com.antique.common.Constant
 import com.antique.common.Post
-import com.antique.home.data.Block
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
