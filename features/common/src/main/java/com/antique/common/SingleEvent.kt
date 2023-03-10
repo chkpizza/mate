@@ -1,4 +1,4 @@
-package com.antique.post
+package com.antique.common
 
 import androidx.lifecycle.Observer
 
