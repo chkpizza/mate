@@ -10,6 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import androidx.core.view.updatePadding
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.GridLayoutManager
@@ -69,7 +70,8 @@ class HomeFragment : Fragment() {
 
     private fun setupRecyclerView() {
         postListAdapter = PostListAdapter {
-
+            val action = HomeFragmentDirections.actionHomeFragmentToPostDetailsFragment(it)
+            findNavController().navigate(action)
         }
         postCategoryListAdapter = PostCategoryListAdapter {
             homeViewModel.getNewCategoryPosts(it)

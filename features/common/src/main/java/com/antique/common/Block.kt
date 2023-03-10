@@ -1,4 +1,4 @@
-package com.antique.home.data
+package com.antique.common
 
 import androidx.annotation.Keep
 
