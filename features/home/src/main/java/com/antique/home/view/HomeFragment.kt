@@ -12,12 +12,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.GridLayoutManager
+import com.antique.common.ApiStatus
 import com.antique.home.R
 import com.antique.home.adapter.PostCategoryListAdapter
 import com.antique.home.adapter.PostCategoryWrapperAdapter
 import com.antique.home.databinding.FragmentHomeBinding
 import com.antique.home.viewmodel.HomeViewModel
 import com.antique.home.viewmodel.HomeViewModelFactory
+import com.google.android.material.snackbar.Snackbar
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -83,11 +85,23 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupViewState() {
-        val categories = mutableListOf("일상", "공부질문", "넋두리", "수험생활")
-        postCategoryListAdapter.submitList(categories)
+        homeViewModel.getCategories()
     }
 
     private fun setupObservers() {
+        homeViewModel.categories.observe(viewLifecycleOwner) {
+            when(it) {
+                is ApiStatus.Success -> {
+                    postCategoryListAdapter.submitList(it.items)
+                    homeViewModel.initCategory(it.items.first())
+                }
+                is ApiStatus.Error -> {
+                    Snackbar.make(binding.root, getString(R.string.category_loading_error_text), Snackbar.LENGTH_SHORT).show()
+                }
+                is ApiStatus.Loading -> {}
+            }
+        }
+
         homeViewModel.category.observe(viewLifecycleOwner) {
             postCategoryListAdapter.updateCategory(it)
         }
