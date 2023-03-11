@@ -74,4 +74,7 @@ dependencies {
 
     //recycler view
     implementation(AndroidX.RECYCLER_VIEW)
+
+    //circle image view
+    implementation(ThirdParty.CIRCULAR_IMAGE_VIEW)
 }

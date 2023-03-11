@@ -10,5 +10,6 @@ class Constant {
         const val POST_NODE = "Post"
         const val BLOCK_NODE = "Block"
         const val COMMENT_NODE = "Comment"
+        const val CLASS_CAST_EXCEPTION = "ClassCastException"
     }
 }
