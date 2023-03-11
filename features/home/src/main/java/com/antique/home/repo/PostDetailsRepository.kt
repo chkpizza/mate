@@ -10,4 +10,5 @@ interface PostDetailsRepository {
     suspend fun removePost(post: Post): Boolean
     suspend fun reportPost(post: Post): Boolean
     suspend fun reportComment(comment: Comment): Boolean
+    suspend fun blockUser(blockUid: String): Boolean
 }

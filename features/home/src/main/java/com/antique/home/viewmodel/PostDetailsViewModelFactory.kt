@@ -16,7 +16,8 @@ class PostDetailsViewModelFactory : ViewModelProvider.Factory {
                 RemoveCommentUseCase(postDetailsRepository),
                 RemovePostUseCase(postDetailsRepository),
                 ReportPostUseCase(postDetailsRepository),
-                ReportCommentUseCase(postDetailsRepository)
+                ReportCommentUseCase(postDetailsRepository),
+                BlockUserUseCase(postDetailsRepository)
             ) as T
         }
         throw IllegalArgumentException("unknown view model")

@@ -92,10 +92,12 @@ class PostDetailsFragment() : Fragment() {
                         1 -> postDetailsViewModel.reportComment(it)
                         2 -> {
                             AlertDialog.Builder(requireActivity())
-                                .setMessage("정말 이 사용자를 신고하시겠습니까?")
+                                .setTitle("사용자를 신고하시겠습니까?")
+                                .setMessage("신고된 사용자는 차단되어 게시글과 댓글이 숨겨지고\n차단은 취소할 수 없습니다")
                                 .setNegativeButton("취소", null)
-                                .setPositiveButton("신고",null)
-                                .create().show()
+                                .setPositiveButton("확인") { _, _ ->
+                                    postDetailsViewModel.blockUser(it.author.uid)
+                                }.create().show()
                         }
                     }
                 }
@@ -133,10 +135,12 @@ class PostDetailsFragment() : Fragment() {
                         1 -> postDetailsViewModel.reportPost()
                         2 -> {
                             AlertDialog.Builder(requireActivity())
-                                .setMessage("정말 이 사용자를 신고하시겠습니까?")
+                                .setTitle("사용자를 신고하시겠습니까?")
+                                .setMessage("신고된 사용자는 차단되어 게시글과 댓글이 숨겨지고\n차단은 취소할 수 없습니다")
                                 .setNegativeButton("취소", null)
-                                .setPositiveButton("신고",null)
-                                .create().show()
+                                .setPositiveButton("확인") { _, _ ->
+                                    postDetailsViewModel.blockUser(postDetailsViewModel.postOverview.author)
+                                }.create().show()
                         }
                     }
                 }
@@ -224,6 +228,27 @@ class PostDetailsFragment() : Fragment() {
                 false -> {
                     Snackbar.make(binding.root, getString(R.string.comment_report_failure_text), Snackbar.LENGTH_SHORT).show()
                 }
+            }
+        })
+
+        postDetailsViewModel.blockUserState.observe(viewLifecycleOwner, EventObserver {
+            when(it) {
+                true -> {
+                    Toast.makeText(requireActivity(), getString(R.string.block_user_success_text), Toast.LENGTH_SHORT).show()
+                }
+                false -> {
+                    Toast.makeText(requireActivity(), getString(R.string.block_user_failure_text), Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+
+        postDetailsViewModel.finish.observe(viewLifecycleOwner, EventObserver {
+            when(it) {
+                true -> {
+                    homeViewModel.clear()
+                    findNavController().navigateUp()
+                }
+                false -> {}
             }
         })
     }

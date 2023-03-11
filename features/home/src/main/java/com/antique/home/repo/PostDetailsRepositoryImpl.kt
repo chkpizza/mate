@@ -23,7 +23,8 @@ class PostDetailsRepositoryImpl(private val dispatcher: CoroutineDispatcher) : P
             }
         }
 
-        PostDetails(post.author, post.details, post.images, post.category, post.date, post.postId, comments)
+
+        PostDetails(post.author, post.details, post.images, post.category, post.date, post.postId, filter(comments))
     }
 
     override suspend fun getAuthor(uid: String): User = withContext(dispatcher) {
@@ -92,7 +93,34 @@ class PostDetailsRepositoryImpl(private val dispatcher: CoroutineDispatcher) : P
         }
     }
 
+    override suspend fun blockUser(blockUid: String): Boolean = withContext(dispatcher) {
+        val uid = Firebase.auth.currentUser?.uid.toString()
+        val blockRef = Firebase.database.reference.child(Constant.BLOCK_NODE).child(uid).child(blockUid)
+
+        val date = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Calendar.getInstance().time)
+        blockRef.setValue(Block(blockUid, date)).await()
+        validate(blockRef)
+    }
+
     private suspend fun validate(ref: DatabaseReference): Boolean = ref.get().await().exists()
 
+    private suspend fun filter(comments: MutableList<Comment>): List<Comment> {
+        val filteredComments: List<Comment>
+        val blockers = mutableListOf<String>()
+        val uid = Firebase.auth.currentUser?.uid.toString()
+        val response = Firebase.database.reference.child(Constant.BLOCK_NODE).child(uid).get().await()
+
+        return if (response.exists()) {
+            response.children.forEach {
+                it.getValue(Block::class.java)?.let { block ->
+                    blockers.add(block.blockedUser)
+                }
+            }
+            filteredComments = comments.filterNot { it.author in blockers }
+            filteredComments
+        } else {
+            comments.toList()
+        }
+    }
 
 }

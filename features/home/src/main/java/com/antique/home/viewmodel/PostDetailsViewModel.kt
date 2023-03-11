@@ -9,7 +9,6 @@ import com.antique.common.PostOverview
 import com.antique.common.SingleEvent
 import com.antique.home.data.CommentUiState
 import com.antique.home.data.PostDetailsUiState
-import com.antique.home.data.PostUiState
 import com.antique.home.usecase.*
 import kotlinx.coroutines.launch
 
@@ -19,7 +18,8 @@ class PostDetailsViewModel(
     private val removeCommentUseCase: RemoveCommentUseCase,
     private val removePostUseCase: RemovePostUseCase,
     private val reportPostUseCase: ReportPostUseCase,
-    private val reportCommentUseCase: ReportCommentUseCase
+    private val reportCommentUseCase: ReportCommentUseCase,
+    private val blockUserUseCase: BlockUserUseCase
 ) : ViewModel() {
     private val _postDetails = MutableLiveData<ApiStatus<PostDetailsUiState>>()
     val postDetails: MutableLiveData<ApiStatus<PostDetailsUiState>> get() = _postDetails
@@ -39,7 +39,13 @@ class PostDetailsViewModel(
     private val _reportCommentState = MutableLiveData<SingleEvent<Boolean>>()
     val reportCommentState: LiveData<SingleEvent<Boolean>> get() = _reportCommentState
 
-    private lateinit var postOverview: PostOverview
+    private val _blockUserState = MutableLiveData<SingleEvent<Boolean>>()
+    val blockUserState: LiveData<SingleEvent<Boolean>> get() = _blockUserState
+
+    private val _finish = MutableLiveData<SingleEvent<Boolean>>()
+    val finish: LiveData<SingleEvent<Boolean>> get() = _finish
+
+    lateinit var postOverview: PostOverview
 
     fun getPostDetails(postId: String, category: String) {
         viewModelScope.launch {
@@ -132,6 +138,24 @@ class PostDetailsViewModel(
                 val response = reportCommentUseCase(comment)
                 _reportCommentState.value = SingleEvent(response)
             } catch (_: Exception) {}
+        }
+    }
+
+    fun blockUser(blockUid: String) {
+        viewModelScope.launch {
+            try {
+                if(blockUserUseCase(blockUid)) {
+                    _blockUserState.value = SingleEvent(true)
+
+                    if(blockUid == postOverview.author) {
+                        _finish.value = SingleEvent(true)
+                    } else {
+                        getPostDetails(postOverview.postId, postOverview.category)
+                    }
+                } else {
+                    _blockUserState.value = SingleEvent(false)
+                }
+            } catch (_: Exception) { }
         }
     }
 }
