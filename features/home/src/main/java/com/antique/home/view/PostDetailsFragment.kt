@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -19,10 +20,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.antique.common.ApiStatus
-import com.antique.common.Constant
-import com.antique.common.EventObserver
-import com.antique.common.User
+import com.antique.common.*
 import com.antique.home.OnReportClickListener
 import com.antique.home.R
 import com.antique.home.adapter.CommentListAdapter
@@ -70,6 +68,7 @@ class PostDetailsFragment() : Fragment() {
         setupObservers()
     }
 
+    /*
     private fun setupInsets() {
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
             view.updatePadding(
@@ -78,6 +77,11 @@ class PostDetailsFragment() : Fragment() {
             )
             insets
         }
+    }
+
+     */
+    private fun setupInsets() {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root, ViewInsetsCallback(insetTypes = WindowInsetsCompat.Type.systemBars(), insetTypes2 = WindowInsetsCompat.Type.ime()))
     }
 
     private fun setupRecyclerView() {
