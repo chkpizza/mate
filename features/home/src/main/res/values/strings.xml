@@ -4,4 +4,9 @@
     <string name="category_loading_error_text">질문 카테고리를 불러오지 못했습니다</string>
     <string name="post_loading_error_text">게시글을 불러오지 못했습니다</string>
     <string name="post_not_found_error_text">이미 삭제된 게시글입니다</string>
+    <string name="post_remove_error_text">게시글을 삭제하지 못했습니다\n잠시후 다시 시도해주세요</string>
+    <string name="post_report_success_text">해당 게시글이 신고접수 되었습니다\n검토 후 운영정책에 위반되는 경우 해당 게시글은 삭제됩니다</string>
+    <string name="post_report_failure_text">이미 신고한 게시글입니다</string>
+    <string name="comment_report_success_text">해당 댓글이 신고접수 되었습니다\n검토 후 운영정책에 위반되는 경우 해당 댓글은 삭제됩니다</string>
+    <string name="comment_report_failure_text">이미 신고한 댓글입니다</string>
 </resources>
