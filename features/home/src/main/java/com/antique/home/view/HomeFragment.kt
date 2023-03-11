@@ -135,14 +135,16 @@ class HomeFragment : Fragment() {
         }
 
         homeViewModel.posts.observe(viewLifecycleOwner) {
-            when(it) {
-                is ApiStatus.Success -> {
-                    postListAdapter.submitList(it.items)
+            it?.let {
+                when(it) {
+                    is ApiStatus.Success -> {
+                        postListAdapter.submitList(it.items)
+                    }
+                    is ApiStatus.Error -> {
+                        Snackbar.make(binding.root, getString(R.string.post_loading_error_text), Snackbar.LENGTH_SHORT).show()
+                    }
+                    is ApiStatus.Loading -> {}
                 }
-                is ApiStatus.Error -> {
-                    Snackbar.make(binding.root, getString(R.string.post_loading_error_text), Snackbar.LENGTH_SHORT).show()
-                }
-                is ApiStatus.Loading -> {}
             }
         }
 

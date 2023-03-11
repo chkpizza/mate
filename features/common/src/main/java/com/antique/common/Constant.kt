@@ -8,7 +8,11 @@ class Constant {
         const val CATEGORY_NODE = "Category"
         const val USER_NODE = "User"
         const val POST_NODE = "Post"
+        const val REPORT_NODE = "Report"
+        const val POST_REPORT_NODE = "PostReport"
+        const val COMMENT_REPORT_NODE = "CommentReport"
         const val BLOCK_NODE = "Block"
         const val COMMENT_NODE = "Comment"
+        const val CLASS_CAST_EXCEPTION = "ClassCastException"
     }
 }

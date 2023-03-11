@@ -33,8 +33,8 @@ class HomeViewModel(
     private val _isLoading = MutableLiveData<SingleEvent<Boolean>>()
     val isLoading: LiveData<SingleEvent<Boolean>> get() = _isLoading
 
-    private val _posts = MutableLiveData<ApiStatus<List<PostUiState>>>()
-    val posts: LiveData<ApiStatus<List<PostUiState>>> get() = _posts
+    private val _posts = MutableLiveData<ApiStatus<List<PostUiState>>?>()
+    val posts: LiveData<ApiStatus<List<PostUiState>>?> get() = _posts
 
 
     fun initialize() {
@@ -43,8 +43,8 @@ class HomeViewModel(
                 if(categories.value == null) {
                     val response = getCategoriesUseCase()
                     _categories.value = ApiStatus.Success(response)
-                    getInitPosts()
                 }
+                getInitPosts()
             } catch (e: Exception) {
                 _categories.value = ApiStatus.Error(e)
             }
@@ -154,5 +154,9 @@ class HomeViewModel(
                 _isLoading.value = SingleEvent(false)
             }
         }
+    }
+
+    fun clear() {
+        _posts.value = null
     }
 }
