@@ -23,7 +23,7 @@ import com.google.android.material.snackbar.Snackbar
 class PostFragment : Fragment() {
     private var _binding: FragmentPostBinding? = null
     private val binding get() = _binding!!
-    
+
     private val postViewModel by navGraphViewModels<PostViewModel>(R.id.post_nav_graph) { PostViewModelFactory() }
     private lateinit var registerPostMenuItem: MenuItem
     private lateinit var selectedImageListAdapter: SelectedImageListAdapter
