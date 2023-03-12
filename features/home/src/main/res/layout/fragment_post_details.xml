@@ -62,7 +62,7 @@
                     android:visibility="gone"
                     android:textColor="@color/gray_9d"
                     android:padding="4dp"
-                    android:text="삭제하기"
+                    android:text="@string/post_remove_view_text"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="20dp" />
 
@@ -77,19 +77,6 @@
                     android:layout_marginEnd="20dp"
                     android:layout_marginTop="20dp"
                     android:src="@drawable/ic_more"/>
-
-                <TextView
-                    android:id="@+id/edit_post_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:visibility="gone"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginTop="20dp"
-                    android:textColor="@color/gray_9d"
-                    android:padding="4dp"
-                    android:text="수정하기" />
 
                 <TextView
                     android:id="@+id/post_detail_text_view"
@@ -159,7 +146,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginTop="16dp"
                     android:layout_marginStart="16dp"
-                    android:text="댓글"
+                    android:text="@string/comment_title_view_text"
                     android:textColor="@color/gray_9d" />
 
                 <TextView
@@ -231,7 +218,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/shape_rect_4dp_gray_e9"
-                android:hint="댓글을 입력해주세요"
+                android:hint="@string/comment_input_view_hint_text"
                 android:textColor="@color/black"
                 android:textSize="14sp"/>
 
@@ -246,7 +233,7 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="12dp"
                 android:layout_marginBottom="12dp"
-                android:text="등록"
+                android:text="@string/comment_submit_button_text"
                 android:enabled="false"
                 android:backgroundTint="@color/cyan_blue"
                 android:textColor="@color/white"
