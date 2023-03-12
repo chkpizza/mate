@@ -11,4 +11,15 @@
     <string name="comment_report_failure_text">이미 신고한 댓글입니다</string>
     <string name="block_user_success_text">해당 사용자가 신고접수되었습니다</string>
     <string name="block_user_failure_text">해당 사용자를 신고접수하는 과정에 문제가 발생하였습니다\n잠시 후 다시 시도해주세요</string>
+    <string name="block_user_alert_title_text">사용자를 신고하시겠습니까?</string>
+    <string name="block_user_alert_message_text">신고된 사용자는 차단되어 게시글과 댓글이 숨겨지고 차단은 취소할 수 없습니다</string>
+    <string name="cancel_button_text">취소</string>
+    <string name="confirm_button_text">확인</string>
+    <string name="comment_input_view_hint_text">댓글을 입력해주세요</string>
+    <string name="comment_submit_button_text">등록</string>
+    <string name="comment_title_view_text">댓글</string>
+    <string name="post_remove_view_text">삭제하기</string>
+    <string name="report_post_view_text">게시글 신고하기</string>
+    <string name="block_user_view_text">사용자 신고하기</string>
+    <string name="report_comment_view_text">댓글 신고하기</string>
 </resources>

@@ -8,13 +8,11 @@ import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnScrollChangeListener
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updatePadding
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -27,7 +25,6 @@ import com.antique.home.OnReportClickListener
 import com.antique.home.R
 import com.antique.home.adapter.CommentListAdapter
 import com.antique.home.adapter.ImageListAdapter
-import com.antique.home.data.CommentUiState
 import com.antique.home.databinding.FragmentPostDetailsBinding
 import com.antique.home.viewmodel.HomeViewModel
 import com.antique.home.viewmodel.HomeViewModelFactory
@@ -100,10 +97,10 @@ class PostDetailsFragment() : Fragment() {
                         1 -> postDetailsViewModel.reportComment(it)
                         2 -> {
                             AlertDialog.Builder(requireActivity())
-                                .setTitle("사용자를 신고하시겠습니까?")
-                                .setMessage("신고된 사용자는 차단되어 게시글과 댓글이 숨겨지고\n차단은 취소할 수 없습니다")
-                                .setNegativeButton("취소", null)
-                                .setPositiveButton("확인") { _, _ ->
+                                .setTitle(getString(R.string.block_user_alert_title_text))
+                                .setMessage(getString(R.string.block_user_alert_message_text))
+                                .setNegativeButton(getString(R.string.cancel_button_text), null)
+                                .setPositiveButton(getString(R.string.confirm_button_text)) { _, _ ->
                                     postDetailsViewModel.blockUser(it.author.uid)
                                 }.create().show()
                         }
@@ -149,10 +146,10 @@ class PostDetailsFragment() : Fragment() {
                         1 -> postDetailsViewModel.reportPost()
                         2 -> {
                             AlertDialog.Builder(requireActivity())
-                                .setTitle("사용자를 신고하시겠습니까?")
-                                .setMessage("신고된 사용자는 차단되어 게시글과 댓글이 숨겨지고\n차단은 취소할 수 없습니다")
-                                .setNegativeButton("취소", null)
-                                .setPositiveButton("확인") { _, _ ->
+                                .setTitle(getString(R.string.block_user_alert_title_text))
+                                .setMessage(getString(R.string.block_user_alert_message_text))
+                                .setNegativeButton(getString(R.string.cancel_button_text), null)
+                                .setPositiveButton(getString(R.string.confirm_button_text)) { _, _ ->
                                     postDetailsViewModel.blockUser(postDetailsViewModel.postOverview.author)
                                 }.create().show()
                         }
