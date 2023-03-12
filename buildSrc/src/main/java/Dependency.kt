@@ -38,4 +38,5 @@ object ThirdParty {
     const val GLIDE = "com.github.bumptech.glide:glide:4.14.2"
     const val GLIDE_COMPILER = "com.github.bumptech.glide:compiler:4.14.2"
     const val CIRCULAR_IMAGE_VIEW = "com.mikhaellopez:circularimageview:4.3.1"
+    const val DOTS_INDICATOR = "com.tbuonomo:dotsindicator:4.3"
 }

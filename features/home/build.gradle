@@ -77,4 +77,7 @@ dependencies {
 
     //circle image view
     implementation(ThirdParty.CIRCULAR_IMAGE_VIEW)
+
+    //dots indicator
+    implementation(ThirdParty.DOTS_INDICATOR)
 }

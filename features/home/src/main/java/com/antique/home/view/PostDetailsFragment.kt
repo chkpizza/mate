@@ -8,6 +8,7 @@ import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnScrollChangeListener
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
@@ -20,10 +21,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.antique.common.*
 import com.antique.home.OnReportClickListener
 import com.antique.home.R
 import com.antique.home.adapter.CommentListAdapter
+import com.antique.home.adapter.ImageListAdapter
 import com.antique.home.data.CommentUiState
 import com.antique.home.databinding.FragmentPostDetailsBinding
 import com.antique.home.viewmodel.HomeViewModel
@@ -46,6 +49,7 @@ class PostDetailsFragment() : Fragment() {
     private val post by lazy { args.post }
 
     private lateinit var commentListAdapter: CommentListAdapter
+    private lateinit var imageListAdapter: ImageListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -111,6 +115,12 @@ class PostDetailsFragment() : Fragment() {
 
         binding.commentListView.layoutManager = LinearLayoutManager(requireActivity())
         binding.commentListView.adapter = commentListAdapter
+
+        imageListAdapter = ImageListAdapter {
+            val action = PostDetailsFragmentDirections.actionPostDetailsFragmentToFullScreenFragment(it)
+            findNavController().navigate(action)
+        }
+        binding.postImageListView.adapter = imageListAdapter
     }
 
     private fun setupViewListener() {
@@ -151,6 +161,13 @@ class PostDetailsFragment() : Fragment() {
             })
             reportDialog.show(requireActivity().supportFragmentManager, null)
         }
+
+        binding.postImageListView.registerOnPageChangeCallback(object : OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                postDetailsViewModel.imagePosition = position
+            }
+        })
     }
 
     private fun setupViewState() {
@@ -177,7 +194,19 @@ class PostDetailsFragment() : Fragment() {
                         binding.postRemoveView.visibility = View.GONE
                     }
 
-
+                    if(it.items.images.isNotEmpty()) {
+                        imageListAdapter.submitList(it.items.images)
+                        binding.postImageListView.visibility = View.VISIBLE
+                        binding.postImageListView.setCurrentItem(postDetailsViewModel.imagePosition, false)
+                        if(it.items.images.size > 1) {
+                            binding.postImageListIndicatorView.visibility = View.VISIBLE
+                            binding.postImageListIndicatorView.attachTo(binding.postImageListView)
+                        } else {
+                            binding.postImageListIndicatorView.visibility = View.GONE
+                        }
+                    } else {
+                        binding.postImageListView.visibility = View.GONE
+                    }
                 }
                 is ApiStatus.Error -> {
                     when(it.exception.message) {

@@ -19,5 +19,16 @@
         <argument
             android:name="post"
             app:argType="com.antique.home.data.PostUiState" />
+        <action
+            android:id="@+id/action_postDetailsFragment_to_fullScreenFragment"
+            app:destination="@id/fullScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fullScreenFragment"
+        android:name="com.antique.home.view.FullScreenFragment"
+        android:label="FullScreenFragment" >
+        <argument
+            android:name="imageUrl"
+            app:argType="string" />
     </fragment>
 </navigation>

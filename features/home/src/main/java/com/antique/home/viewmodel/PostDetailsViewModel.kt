@@ -45,6 +45,7 @@ class PostDetailsViewModel(
     private val _finish = MutableLiveData<SingleEvent<Boolean>>()
     val finish: LiveData<SingleEvent<Boolean>> get() = _finish
 
+    var imagePosition: Int = 0
     lateinit var postOverview: PostOverview
 
     fun getPostDetails(postId: String, category: String) {
@@ -158,4 +159,5 @@ class PostDetailsViewModel(
             } catch (_: Exception) { }
         }
     }
+
 }
